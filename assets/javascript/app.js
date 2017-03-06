@@ -31,13 +31,13 @@ $(document).ready(function() {
             for (var i = 0; i < results.length; i++) {
                 if (results[i].rating !== "r") {
                     console.log("loop check");
-                    var marvelDiv = $("<div class='chars'>"); //creating a div to hold the chars
+                    var marvelDiv = $("<div class='chars col-md-4'>"); //creating a div to hold the chars
 
                     var rating = results[i].rating; // storing the rating data
                     var pRate = $("<p>").text("Rating: " + rating); //creating an element with the result of the rating
 
                     var marvelImage = $("<img>"); //creating a img div
-                    marvelImage.addClass("gif");
+                    marvelImage.addClass("gif img-responsive");
 
                     marvelImage.attr({
                         "src": results[i].images.fixed_height_still.url,
@@ -64,7 +64,7 @@ $(document).ready(function() {
         //Looping through the characters and generating buttons for each character of the array
         for (var i = 0; i < marvelCharacters.length; i++) {
             var charButton = $("<button>"); //creating a button
-            charButton.addClass("mCharacters"); //adding character class
+            charButton.addClass("mCharacters btn btn-danger"); //adding character class
             charButton.attr("data-name", marvelCharacters[i]); //adding an attr of the data-name
             console.log(charButton);
             charButton.text(marvelCharacters[i]); //adding the text to the button
