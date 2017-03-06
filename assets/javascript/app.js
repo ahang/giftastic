@@ -37,13 +37,13 @@ $(document).ready(function() {
                     var pRate = $("<p>").text("Rating: " + rating); //creating an element with the result of the rating
 
                     var marvelImage = $("<img>"); //creating a img div
-                    marvelImage.addClass("gif img-responsive");
+                    marvelImage.addClass("gif img-responsive"); //making the gif responsive
 
                     marvelImage.attr({
-                        "src": results[i].images.fixed_height_still.url,
-                        "data-animate": results[i].images.fixed_height.url,
-                        "data-still": results[i].images.fixed_height_still.url,
-                        "data-state": "still" });
+                        "src": results[i].images.fixed_height_still.url, //adding the main default src
+                        "data-animate": results[i].images.fixed_height.url, //adding animated gif link
+                        "data-still": results[i].images.fixed_height_still.url, //adding still gif link
+                        "data-state": "still" }); //setting the data-state to still
                     //marvelImage.attr("src", results[i].images.fixed_height.url);
 
                     marvelDiv.append(pRate); //appends the rating
@@ -85,23 +85,23 @@ $(document).ready(function() {
         marvelCharacters.push(marvelChar); //adds the input to the array
         renderButtons(); //re-renders the button with the newly added character
     });
-
+    //on click for all buttons on the page to displayMarvelInfo Function
     $(document).on("click", "button", displayMarvelInfo);
-
+    //on click for all gifs to animate or still depending on state
     $(document).on("click", ".gif", function() {
-        console.log("Clicked");
-        var state = $(this).attr("data-state");
+        //console.log("Clicked");
+        var state = $(this).attr("data-state"); //setting var to check for data-state
 
-        if (state === "still") {
+        if (state === "still") { //if data-state is still then animate
             $(this).attr("src", $(this).attr("data-animate"));
             $(this).attr("data-state", "animate");
-        } else {
+        } else { //if data-state is animated then set to still
              $(this).attr("src", $(this).attr("data-still"));
              $(this).attr("data-state", "still");
         }
     });
 
-    //Rendering the button
+    //Rendering the button on first page load
     renderButtons();
 
 });
