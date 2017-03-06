@@ -13,7 +13,7 @@ $(document).ready(function() {
 
     //displayMarvelInfo function will dispays the appropriate content in the character div
     function displayMarvelInfo() {
-        console.log("Clicked");
+        //console.log("Clicked");
         reset(); //emptys out the character div for each character button pressed
         var display = $(this).attr("data-name");
         var queryURL = "http://api.giphy.com/v1/gifs/search?q=marvel+" + display + "&rating=pg-13&limit=10&api_key=dc6zaTOxFJmzC";
@@ -37,7 +37,13 @@ $(document).ready(function() {
                     var pRate = $("<p>").text("Rating: " + rating); //creating an element with the result of the rating
 
                     var marvelImage = $("<img>"); //creating a img div
-                    marvelImage.attr("src", results[i].images.fixed_height.url);
+                    marvelImage.addClass("gif");
+
+                    marvelImage.attr({
+                        "src": results[i].images.fixed_height_still.url,
+                        "data-animate": results[i].images.fixed_height.url,
+                        "data-still": results[i].images.fixed_height_still.url,
+                        "data-state": "still" });
                     //marvelImage.attr("src", results[i].images.fixed_height.url);
 
                     marvelDiv.append(pRate); //appends the rating
@@ -82,8 +88,8 @@ $(document).ready(function() {
 
     $(document).on("click", "button", displayMarvelInfo);
 
-    $(".gif").on("click", function() {
-
+    $(document).on("click", ".gif", function() {
+        console.log("Clicked");
         var state = $(this).attr("data-state");
 
         if (state === "still") {
