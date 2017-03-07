@@ -7,6 +7,7 @@ $(document).ready(function() {
 
     //Add a form that allows user to input their text and add it to the array
     //Working link - http://api.giphy.com/v1/gifs/search?q=iron+man&limit=10&api_key=dc6zaTOxFJmzC
+    //TODO: Prevent user from submiting no text
 
     /////////////////////////////
     var marvelCharacters = ["Iron Man", "Spiderman", "Starlord", "Captain America", "Bruce Banner", "Thor", "Deadpool", "Wolverine", "Thanos", "Daredevil", "Doctor Strange", "Black Widow"];
@@ -72,18 +73,6 @@ $(document).ready(function() {
         }
     }
 
-    function textChecker() {
-        var text = $.trim($(".marvel-input").val()); //triming out white space at the front and end and grabbing the input value.
-        //clears white space at beginning and end.
-        //Checks to see if the marvel-input field is blank or not
-        if (!text || text.length === 0) {
-            $(".invalid").attr("placeholder", "You cannot submit a blank field!"); //Updates placeholder for invalid submissions
-        } else {
-            marvelCharacters.push(text); //adds the input to the array
-            renderButtons(); //re-renders the button with the newly added character
-        }
-    }
-
     //emptys our the characters div
     function reset() {
         $(".characters").empty();
@@ -112,7 +101,7 @@ $(document).ready(function() {
         //clears white space at beginning and end.
         //Checks to see if the marvel-input field is blank or not
         if (!text || text.length === 0) {
-            $(".invalid").attr("placeholder", "You cannot submit a blank field!"); //Updates placeholder for invalid submissions
+            $(".marvel-input").attr("placeholder", "You cannot submit a blank field!"); //Updates placeholder for invalid submissions
         } else {
             marvelCharacters.push(text); //adds the input to the array
             renderButtons(); //re-renders the button with the newly added character
