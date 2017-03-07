@@ -44,9 +44,8 @@ $(document).ready(function() {
                         "src": results[i].images.fixed_height_still.url, //adding the main default src
                         "data-animate": results[i].images.fixed_height.url, //adding animated gif link
                         "data-still": results[i].images.fixed_height_still.url, //adding still gif link
-                        "data-state": "still" }); //setting the data-state to still
-        
-
+                        "data-state": "still" //setting the data-state to still
+                    }); 
                     marvelDiv.append(pRate); //appends the rating
                     marvelDiv.append(marvelImage); //appends the image
 
@@ -94,22 +93,18 @@ $(document).ready(function() {
 
     //adding on click to handle the submission of a new character
     $(".add-marvel").on("click", function(event) {
+        event.preventDefault(); //stops the page from refreshing on click
+        var text = $.trim($(".marvel-input").val()); //triming out white space at the front and end and grabbing the input value.
         //clears white space at beginning and end.
         //Checks to see if the marvel-input field is blank or not
-        if ($.trim($(".marvel-input").val()) === "") {
-            event.preventDefault(); //stops page from refreshing
-            $(".invalid").attr("placeholder", "You cannot submit a blank field!");
+        if (!text || text.length === 0) {
+            $(".invalid").attr("placeholder", "You cannot submit a blank field!"); //Updates placeholder for invalid submissions
         } else {
-            event.preventDefault(); //stops the page from refreshing on click
-
-            var marvelChar = $(".marvel-input").val().trim(); //grabbing the input and trimming out any extra whitespace
-            marvelCharacters.push(marvelChar); //adds the input to the array
+            marvelCharacters.push(text); //adds the input to the array
             renderButtons(); //re-renders the button with the newly added character
         }
-
+        
     });
-
-
 
     //on click for all buttons on the page to displayMarvelInfo Function
     $(document).on("click", "button", displayMarvelInfo);
