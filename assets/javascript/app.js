@@ -10,7 +10,7 @@ $(document).ready(function() {
     //TODO: Prevent user from submiting no text
 
     /////////////////////////////
-    var marvelCharacters = ["Iron Man", "Spiderman", "Starlord", "Captain America", "Bruce Banner", "Thor", "Deadpool", "Wolverine", "Thanos", "Daredevil", "Doctor Strange", "Black Widow"];
+    var marvelCharacters = ["Iron Man", "Spiderman", "Starlord", "Captain America", "Bruce Banner", "Thor", "Deadpool", "Wolverine", "Thanos", "Daredevil", "Doctor Strange", "Black Widow", "Loki"];
 
     //displayMarvelInfo function will dispays the appropriate content in the character div
     function displayMarvelInfo() {
