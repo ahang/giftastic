@@ -31,7 +31,7 @@ $(document).ready(function() {
             //looping through every result item
             for (var i = 0; i < results.length; i++) {
                 if (results[i].rating !== "r") {
-                    console.log("loop check");
+                    //console.log("loop check");
                     var marvelDiv = $("<div class='chars col-md-4'>"); //creating a div to hold the chars
 
                     var rating = results[i].rating; // storing the rating data
@@ -71,6 +71,19 @@ $(document).ready(function() {
             $(".marvel-view").append(charButton); //appending it to the div
         }
     }
+
+    function textChecker() {
+        var text = $.trim($(".marvel-input").val()); //triming out white space at the front and end and grabbing the input value.
+        //clears white space at beginning and end.
+        //Checks to see if the marvel-input field is blank or not
+        if (!text || text.length === 0) {
+            $(".invalid").attr("placeholder", "You cannot submit a blank field!"); //Updates placeholder for invalid submissions
+        } else {
+            marvelCharacters.push(text); //adds the input to the array
+            renderButtons(); //re-renders the button with the newly added character
+        }
+    }
+
     //emptys our the characters div
     function reset() {
         $(".characters").empty();
@@ -94,6 +107,7 @@ $(document).ready(function() {
     //adding on click to handle the submission of a new character
     $(".add-marvel").on("click", function(event) {
         event.preventDefault(); //stops the page from refreshing on click
+        
         var text = $.trim($(".marvel-input").val()); //triming out white space at the front and end and grabbing the input value.
         //clears white space at beginning and end.
         //Checks to see if the marvel-input field is blank or not
@@ -103,7 +117,6 @@ $(document).ready(function() {
             marvelCharacters.push(text); //adds the input to the array
             renderButtons(); //re-renders the button with the newly added character
         }
-        
     });
 
     //on click for all buttons on the page to displayMarvelInfo Function
@@ -122,6 +135,7 @@ $(document).ready(function() {
              $(this).attr("data-state", "still");
         }
     });
+
 
     //Rendering the button on first page load
     renderButtons();
