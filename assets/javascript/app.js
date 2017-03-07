@@ -18,7 +18,7 @@ $(document).ready(function() {
         reset(); //emptys out the character div for each character button pressed
         var display = $(this).attr("data-name");
         //offsetting by 10 to get more accurate gifs for each character
-        var queryURL = "http://api.giphy.com/v1/gifs/search?q=marvel+" + display + "&offset=10&rating=pg-13&limit=10&api_key=dc6zaTOxFJmzC";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=marvel+" + display + "&offset=10&rating=pg-13&limit=10&api_key=dc6zaTOxFJmzC";
 
         //Creating AJAX call for each of the character buttons being click
         $.ajax({
