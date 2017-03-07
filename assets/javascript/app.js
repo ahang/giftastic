@@ -89,7 +89,8 @@ $(document).ready(function() {
     $(document).on("click", "button", displayMarvelInfo);
     //on click for all gifs to animate or still depending on state
     $(document).on("click", ".gif", function() {
-        //console.log("Clicked");
+    //$(".gif").on("click", function(){
+        //console.log($(this));
         var state = $(this).attr("data-state"); //setting var to check for data-state
 
         if (state === "still") { //if data-state is still then animate
