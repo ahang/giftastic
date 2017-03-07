@@ -16,7 +16,8 @@ $(document).ready(function() {
         //console.log("Clicked");
         reset(); //emptys out the character div for each character button pressed
         var display = $(this).attr("data-name");
-        var queryURL = "http://api.giphy.com/v1/gifs/search?q=marvel+" + display + "&rating=pg-13&limit=10&api_key=dc6zaTOxFJmzC";
+        //offsetting by 10 to get more accurate gifs for each character
+        var queryURL = "http://api.giphy.com/v1/gifs/search?q=marvel+" + display + "&offset=10&rating=pg-13&limit=10&api_key=dc6zaTOxFJmzC";
 
         //Creating AJAX call for each of the character buttons being click
         $.ajax({
@@ -37,14 +38,14 @@ $(document).ready(function() {
                     var pRate = $("<p>").text("Rating: " + rating); //creating an element with the result of the rating
 
                     var marvelImage = $("<img>"); //creating a img div
-                    marvelImage.addClass("gif img-responsive"); //making the gif responsive
+                    marvelImage.addClass("img-responsive"); //making the gif responsive
 
                     marvelImage.attr({
                         "src": results[i].images.fixed_height_still.url, //adding the main default src
                         "data-animate": results[i].images.fixed_height.url, //adding animated gif link
                         "data-still": results[i].images.fixed_height_still.url, //adding still gif link
                         "data-state": "still" }); //setting the data-state to still
-                    //marvelImage.attr("src", results[i].images.fixed_height.url);
+        
 
                     marvelDiv.append(pRate); //appends the rating
                     marvelDiv.append(marvelImage); //appends the image
@@ -76,19 +77,44 @@ $(document).ready(function() {
         $(".characters").empty();
     }
 
+    //added user input styling to check if text is present or not
+    //if text is present. Box will be bordered green or if not text will be
+    //bordered red
+    $(".marvel-input").on("input", function() {
+
+        var input = $(this);
+        var is_name = input.val();
+
+        if (is_name) {
+            input.removeClass("invalid").addClass("valid");
+        } else {
+            input.removeClass("valid").addClass("invalid");
+        }
+    });
+
     //adding on click to handle the submission of a new character
     $(".add-marvel").on("click", function(event) {
+        //clears white space at beginning and end.
+        //Checks to see if the marvel-input field is blank or not
+        if ($.trim($(".marvel-input").val()) === "") {
+            event.preventDefault(); //stops page from refreshing
+            $(".invalid").attr("placeholder", "You cannot submit a blank field!");
+        } else {
+            event.preventDefault(); //stops the page from refreshing on click
 
-        event.preventDefault(); //stops the page from refreshing on click
+            var marvelChar = $(".marvel-input").val().trim(); //grabbing the input and trimming out any extra whitespace
+            marvelCharacters.push(marvelChar); //adds the input to the array
+            renderButtons(); //re-renders the button with the newly added character
+        }
 
-        var marvelChar = $(".marvel-input").val().trim(); //grabbing the input and trimming out any extra whitespace
-        marvelCharacters.push(marvelChar); //adds the input to the array
-        renderButtons(); //re-renders the button with the newly added character
     });
+
+
+
     //on click for all buttons on the page to displayMarvelInfo Function
     $(document).on("click", "button", displayMarvelInfo);
     //on click for all gifs to animate or still depending on state
-    $(document).on("click", ".gif", function() {
+    $(document).on("click", "img", function() {
     //$(".gif").on("click", function(){
         //console.log($(this));
         var state = $(this).attr("data-state"); //setting var to check for data-state
