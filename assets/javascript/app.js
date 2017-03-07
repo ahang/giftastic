@@ -67,7 +67,7 @@ $(document).ready(function() {
             var charButton = $("<button>"); //creating a button
             charButton.addClass("mCharacters btn btn-danger"); //adding character class
             charButton.attr("data-name", marvelCharacters[i]); //adding an attr of the data-name
-            console.log(charButton);
+            //console.log(charButton);
             charButton.text(marvelCharacters[i]); //adding the text to the button
             $(".marvel-view").append(charButton); //appending it to the div
         }
