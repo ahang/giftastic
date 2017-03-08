@@ -7,7 +7,8 @@ $(document).ready(function() {
 
     //Add a form that allows user to input their text and add it to the array
     //Working link - http://api.giphy.com/v1/gifs/search?q=iron+man&limit=10&api_key=dc6zaTOxFJmzC
-    //TODO: Prevent user from submiting no text
+    //Fixed - Prevent user from submiting no text
+    //Added - random gifs each click
 
     /////////////////////////////
     var marvelCharacters = ["Iron Man", "Spiderman", "Starlord", "Captain America", "Bruce Banner", "Thor", "Deadpool", "Wolverine", "Thanos", "Daredevil", "Doctor Strange", "Black Widow", "Loki"];
@@ -17,8 +18,10 @@ $(document).ready(function() {
         //console.log("Clicked");
         reset(); //emptys out the character div for each character button pressed
         var display = $(this).attr("data-name");
+        var offsetNum = Math.floor(Math.random() * 1000); //Random offset to get more gif variation! 
+        console.log(offsetNum);
         //offsetting by 10 to get more accurate gifs for each character
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=marvel+" + display + "&offset=10&rating=pg-13&limit=10&api_key=dc6zaTOxFJmzC";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=marvel+" + display + "&offset=" + offsetNum + "&rating=pg-13&limit=10&api_key=dc6zaTOxFJmzC";
 
         //Creating AJAX call for each of the character buttons being click
         $.ajax({
