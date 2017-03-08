@@ -104,6 +104,7 @@ $(document).ready(function() {
             $(".marvel-input").attr("placeholder", "You cannot submit a blank field!"); //Updates placeholder for invalid submissions
         } else {
             marvelCharacters.push(text); //adds the input to the array
+            $(".marvel-input").val(""); //empties out the input field after submitting a character
             renderButtons(); //re-renders the button with the newly added character
         }
     });
