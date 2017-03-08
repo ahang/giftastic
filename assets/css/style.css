@@ -9,6 +9,10 @@
 	/*color: white;*/
 }
 
+.characters img {
+	padding-bottom: 15px;
+}
+
 button {
     margin: 10px;
 }
