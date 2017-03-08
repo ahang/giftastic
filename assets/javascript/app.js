@@ -21,7 +21,7 @@ $(document).ready(function() {
         var offsetNum = Math.floor(Math.random() * 1000); //Random offset to get more gif variation! 
         console.log(offsetNum);
         //offsetting by 10 to get more accurate gifs for each character
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=marvel+" + display + "&offset=" + offsetNum + "&rating=pg-13&limit=10&api_key=dc6zaTOxFJmzC";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?q=marvel+" + display + "&offset=" + offsetNum + "&rating=pg&limit=10&api_key=dc6zaTOxFJmzC";
 
         //Creating AJAX call for each of the character buttons being click
         $.ajax({
@@ -34,7 +34,7 @@ $(document).ready(function() {
             var results = response.data; //storing an array of results
             //looping through every result item
             for (var i = 0; i < results.length; i++) {
-                if (results[i].rating !== "r") {
+                if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
                     //console.log("loop check");
                     var marvelDiv = $("<div class='chars col-md-4'>"); //creating a div to hold the chars
 
