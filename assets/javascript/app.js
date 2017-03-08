@@ -105,6 +105,7 @@ $(document).ready(function() {
         } else {
             marvelCharacters.push(text); //adds the input to the array
             $(".marvel-input").val(""); //empties out the input field after submitting a character
+            $(".marvel-input").removeClass("valid");
             renderButtons(); //re-renders the button with the newly added character
         }
     });
